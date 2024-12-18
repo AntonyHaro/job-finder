@@ -10,7 +10,7 @@ project/
 │   ├── styles.css        # Estilo personalizado
 │
 ├── services/             # Lógica de negócio
-│   └── job_service.py    # Lógica para buscar as vagas (separada)
+│   └── search_jobs.py    # Lógica para buscar as vagas (separada)
 │
 ├── utils/                # Funções utilitárias
 │   └── format_utils.py   # Função formatar_data

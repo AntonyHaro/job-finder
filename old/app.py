@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 import os
 import requests
-import json
 from dotenv import load_dotenv
 from datetime import datetime
 
 load_dotenv()
+
 
 def formatar_data(data_str):
     """Formata a data do formato da API para exibição em português"""
@@ -19,7 +19,13 @@ def formatar_data(data_str):
 
 def buscar_vagas(
     keywords,
-    geo_code=106057199,
+    geo_code=92000000,
+    #   Mundialmente: 92000000
+    #   Estados Unidos: 103644278
+    #   New York City: 102571732
+    #   Brasil: 106057199
+    #   São Paulo (Brasil): 100454131
+    #   Rio de Janeiro (Brasil): 100454132
     date_posted="Any time",
     start=0,
     company_ids=None,
@@ -32,7 +38,7 @@ def buscar_vagas(
     headers = {
         "Content-Type": "application/json",
         "x-rapidapi-host": "fresh-linkedin-profile-data.p.rapidapi.com",
-        "x-rapidapi-key": os.getenv("RAPID_API_KEY"),
+        "x-rapidapi-key": os.getenv("RAPID_API_TEST_KEY"),
     }
 
     payload = {
