@@ -1,62 +1,65 @@
-{% extends "base.html" %} {% block content %}
-<div>
-    <form method="post">
-        <label>Palavras-chave:</label>
-        <input
-            type="text"
-            name="keywords"
-            value="{{ filters.keywords if filters else '' }}"
-            required
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ title if title else "Buscador de Vagas" }}</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles.css') }}"
         />
+        <script
+            src="{{ url_for('static', filename='script.js') }}"
+            defer
+        ></script>
+    </head>
+    <body>
+        <header>
+            <h1>🔍 Buscador de Vagas</h1>
+        </header>
+        <main>
+            <div>
+                <form method="post">
+                    <label>Palavras-chave:</label>
+                    <input type="text" name="keywords" required />
+                    <!-- input conteria value="{{ filters.keywords if filters else '' }}" -->
 
-        <label>Nível de Experiência:</label>
-        <select name="experience">
-            <option value="">Selecione</option>
-            <option value="Estágio">Estágio</option>
-            <option value="Júnior">Júnior</option>
-            <option value="Pleno">Pleno</option>
-            <option value="Sênior">Sênior</option>
-            <option value="Diretor">Diretor</option>
-        </select>
+                    <label>Nível de Experiência:</label>
+                    <select name="experience">
+                        <option value="">Selecione</option>
+                        <option value="Estágio">Estágio</option>
+                        <option value="Júnior">Júnior</option>
+                        <option value="Pleno">Pleno</option>
+                        <option value="Sênior">Sênior</option>
+                        <option value="Diretor">Diretor</option>
+                    </select>
 
-        <label>Tipo de Trabalho:</label>
-        <select name="work_type">
-            <option value="">Selecione</option>
-            <option value="Presencial">Presencial</option>
-            <option value="Remoto">Remoto</option>
-            <option value="Híbrido">Híbrido</option>
-        </select>
+                    <label>Tipo de Trabalho:</label>
+                    <select name="work_type">
+                        <option value="">Selecione</option>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Remoto">Remoto</option>
+                        <option value="Híbrido">Híbrido</option>
+                    </select>
 
-        <label>Data de Publicação:</label>
-        <select name="date_posted">
-            <option value="Qualquer período">Qualquer período</option>
-            <option value="Última 24 horas">Última 24 horas</option>
-            <option value="Última semana">Última semana</option>
-            <option value="Último mês">Último mês</option>
-        </select>
+                    <label>Data de Publicação:</label>
+                    <select name="date_posted">
+                        <option value="Qualquer período">
+                            Qualquer período
+                        </option>
+                        <option value="Última 24 horas">Última 24 horas</option>
+                        <option value="Última semana">Última semana</option>
+                        <option value="Último mês">Último mês</option>
+                    </select>
 
-        <label>Empresa (opcional):</label>
-        <input type="text" name="company_filter" />
+                    <label>Empresa (opcional):</label>
+                    <input type="text" name="company_filter" />
 
-        <button type="submit">Buscar Vagas</button>
-    </form>
-</div>
+                    <button type="submit">Buscar Vagas</button>
+                </form>
+            </div>
 
-<div>
-    {% if error %}
-    <p class="error">{{ error }}</p>
-    {% elif vagas %}
-    <h2>Resultados da Busca</h2>
-    <ul>
-        {% for vaga in vagas %}
-        <li>
-            <h3>{{ vaga.job_title }}</h3>
-            <p>Empresa: {{ vaga.company }}</p>
-            <p>Localização: {{ vaga.location }}</p>
-            <p><a href="{{ vaga.job_url }}">Ver vaga</a></p>
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-</div>
-{% endblock %}
+            <div id="jobs"></div>
+        </main>
+    </body>
+</html>
