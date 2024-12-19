@@ -9,11 +9,13 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# localidades remotas - Estados Unidos, Europa etc
+# estados brasileiros
 
 # Função para buscar vagas (igual no Streamlit)
 def buscar_vagas(
     keywords,
-    geo_code=92000000,
+    geo_code=106057199,
     date_posted="Any time",
     start=0,
     company_ids=None,
