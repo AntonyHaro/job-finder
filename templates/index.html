@@ -20,45 +20,67 @@
         <main>
             <div>
                 <form method="post">
-                    <label>Palavras-chave:</label>
-                    <input type="text" name="keywords" required />
+                    <div class="input-container">
+                        <label>Palavras-chave:</label>
+                        <input
+                            type="text"
+                            name="keywords"
+                            placeholder="palavras-chave:"
+                            required
+                        />
+                    </div>
                     <!-- input conteria value="{{ filters.keywords if filters else '' }}" -->
 
-                    <label>Nível de Experiência:</label>
-                    <select name="experience">
-                        <option value="">Selecione</option>
-                        <option value="Estágio">Estágio</option>
-                        <option value="Júnior">Júnior</option>
-                        <option value="Pleno">Pleno</option>
-                        <option value="Sênior">Sênior</option>
-                        <option value="Diretor">Diretor</option>
-                    </select>
+                    <div class="input-container">
+                        <label>Nível de Experiência:</label>
+                        <select name="experience">
+                            <option value="">Selecione</option>
+                            <option value="Estágio">Estágio</option>
+                            <option value="Júnior">Júnior</option>
+                            <option value="Pleno">Pleno</option>
+                            <option value="Sênior">Sênior</option>
+                            <option value="Diretor">Diretor</option>
+                        </select>
+                    </div>
 
-                    <label>Tipo de Trabalho:</label>
-                    <select name="work_type">
-                        <option value="">Selecione</option>
-                        <option value="Presencial">Presencial</option>
-                        <option value="Remoto">Remoto</option>
-                        <option value="Híbrido">Híbrido</option>
-                    </select>
+                    <div class="input-container">
+                        <label>Tipo de Trabalho:</label>
+                        <select name="work_type">
+                            <option value="">Selecione</option>
+                            <option value="Presencial">Presencial</option>
+                            <option value="Remoto">Remoto</option>
+                            <option value="Híbrido">Híbrido</option>
+                        </select>
+                    </div>
 
-                    <label>Data de Publicação:</label>
-                    <select name="date_posted">
-                        <option value="Qualquer período">
-                            Qualquer período
-                        </option>
-                        <option value="Última 24 horas">Última 24 horas</option>
-                        <option value="Última semana">Última semana</option>
-                        <option value="Último mês">Último mês</option>
-                    </select>
+                    <div class="input-container">
+                        <label>Data de Publicação:</label>
+                        <select name="date_posted">
+                            <option value="Qualquer período">
+                                Qualquer período
+                            </option>
+                            <option value="Última 24 horas">
+                                Última 24 horas
+                            </option>
+                            <option value="Última semana">Última semana</option>
+                            <option value="Último mês">Último mês</option>
+                        </select>
+                    </div>
 
-                    <label>Empresa (opcional):</label>
-                    <input type="text" name="company_filter" />
+                    <div class="input-container">
+                        <label>Empresa (opcional):</label>
+                        <input
+                            type="text"
+                            name="company_filter"
+                            placeholder="empresas:"
+                        />
+                    </div>
 
                     <button type="submit">Buscar Vagas</button>
                 </form>
             </div>
 
+            <div id="loader">Carregando resultados...</div>
             <div id="jobs"></div>
         </main>
     </body>
