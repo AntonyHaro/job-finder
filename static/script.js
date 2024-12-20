@@ -21,15 +21,21 @@ function displayJobs(jobs) {
                         (job) => `
                         <li class="job">
                             <h3 class="job-title">${job.job_title}</h3>
-                            <p><strong>Empresa:</strong> ${job.company}</p>
-                            <p><strong>Localização:</strong> ${job.location}</p>
-                            <p><strong>Publicada em:</strong> ${
-                                job.posted_time
-                            }</p>
-                            <p><strong>Localização:</strong> ${job.location}</p>
-                            <p><strong>Salário:</strong> ${
-                                job.salary || "Não especificado"
-                            }</p>
+                            <div>
+                                <p><strong>Empresa:</strong> ${job.company}</p>
+                                <p><strong>Localização:</strong> ${
+                                    job.location
+                                }</p>
+                                <p><strong>Publicada em:</strong> ${
+                                    job.posted_time
+                                }</p>
+                                <p><strong>Modalidade:</strong> ${
+                                    job.remote
+                                }</p>
+                                <p><strong>Salário:</strong> ${
+                                    job.salary || "Não especificado"
+                                }</p>
+                            </div>
                             <a href="${
                                 job.job_url
                             }" target="_blank" rel="noopener noreferrer">Ver vaga no Linkedin</a>
