@@ -15,15 +15,24 @@ function displayJobs(jobs) {
     if (jobs.length > 0) {
         jobContainer.innerHTML = `
             <h2>Resultados da Busca:</h2>
-            <ul>
+            <ul class="jobs-container">
                 ${jobs
                     .map(
                         (job) => `
-                        <li>
-                            <h3>${job.job_title}</h3>
+                        <li class="job">
+                            <h3 class="job-title">${job.job_title}</h3>
                             <p><strong>Empresa:</strong> ${job.company}</p>
                             <p><strong>Localização:</strong> ${job.location}</p>
-                            <p><a href="${job.job_url}" target="_blank" rel="noopener noreferrer">Ver vaga</a></p>
+                            <p><strong>Publicada em:</strong> ${
+                                job.posted_time
+                            }</p>
+                            <p><strong>Localização:</strong> ${job.location}</p>
+                            <p><strong>Salário:</strong> ${
+                                job.salary || "Não especificado"
+                            }</p>
+                            <a href="${
+                                job.job_url
+                            }" target="_blank" rel="noopener noreferrer">Ver vaga no Linkedin</a>
                         </li>`
                     )
                     .join("")}
@@ -55,6 +64,8 @@ async function fetchJobs(formData) {
         if (data.error) {
             displayMessage(`Erro: ${data.error}`, true);
         } else if (data.jobs) {
+            console.log(data);
+            console.log(data.jobs);
             displayJobs(data.jobs);
         }
     } catch (error) {

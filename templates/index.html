@@ -8,6 +8,7 @@
             rel="stylesheet"
             href="{{ url_for('static', filename='styles.css') }}"
         />
+        <link rel="stylesheet" href="../static/styles.css" />
         <script
             src="{{ url_for('static', filename='script.js') }}"
             defer
@@ -81,7 +82,71 @@
             </div>
 
             <div id="loader">Carregando resultados...</div>
-            <div id="jobs"></div>
+            <div id="jobs">
+                <!-- imagem + nome da empresa, titulo da vaga, empresa, localização, modalidade, salário, publicado em -->
+                <h2>Resultados da Busca:</h2>
+                <ul class="jobs-container">
+                    <li class="job">
+                        <h3 class="job-title">${job.job_title}</h3>
+                        <p><strong>Empresa:</strong> ${job.company}</p>
+                        <p><strong>Localização:</strong> ${job.location}</p>
+                        <a
+                            href="${job.job_url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Ver vaga no Linkedin</a
+                        >
+                    </li>
+
+                    <li class="job">
+                        <h3 class="job-title">${job.job_title}</h3>
+                        <p><strong>Empresa:</strong> ${job.company}</p>
+                        <p><strong>Localização:</strong> ${job.location}</p>
+                        <a
+                            href="${job.job_url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Ver vaga no Linkedin</a
+                        >
+                    </li>
+
+                    <li class="job">
+                        <h3 class="job-title">${job.job_title}</h3>
+                        <p><strong>Empresa:</strong> ${job.company}</p>
+                        <p><strong>Localização:</strong> ${job.location}</p>
+                        <a
+                            href="${job.job_url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Ver vaga no Linkedin</a
+                        >
+                    </li>
+
+                    <li class="job">
+                        <h3 class="job-title">${job.job_title}</h3>
+                        <p><strong>Empresa:</strong> ${job.company}</p>
+                        <p><strong>Localização:</strong> ${job.location}</p>
+                        <a
+                            href="${job.job_url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Ver vaga no Linkedin</a
+                        >
+                    </li>
+
+                    <li class="job">
+                        <h3 class="job-title">${job.job_title}</h3>
+                        <p><strong>Empresa:</strong> ${job.company}</p>
+                        <p><strong>Localização:</strong> ${job.location}</p>
+                        <a
+                            href="${job.job_url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Ver vaga no Linkedin</a
+                        >
+                    </li>
+                </ul>
+            </div>
         </main>
     </body>
 </html>

@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 :root {
-    --button: hsl(210, 40%, 30%);
+    --button: hsl(210, 100%, 20%);
+    --border: hsl(210, 10%, 50%);
 }
 
 * {
@@ -16,10 +17,16 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    font-size: 16px;
 }
 
 header {
     margin-bottom: 1%;
+}
+
+main {
+    display: grid;
+    gap: 2rem;
 }
 
 form {
@@ -37,22 +44,20 @@ input,
 select,
 button {
     padding: 0.4rem 0.7rem;
-    border: 1px solid gray;
+    border: 1px solid var(--border);
     border-radius: 4px;
 }
 
 button {
-    background-color: var(--button);
-    border: 1px solid transparent;
-    font-weight: bold;
-    color: white;
-    transition: 0.2s ease-out;
+    background-color: lightgray;
+    border: 1px solid var(--border);
+    color: var(--border);
+    transition: 0.2s;
 }
 
 button:hover {
     transform: translateY(-0.2rem);
     cursor: pointer;
-    background-color: transparent;
     border-color: var(--button);
     color: var(--button);
 }
@@ -64,11 +69,11 @@ button:hover {
 #loader {
     display: none;
     color: gray;
-    animation: colorChange 2s infinite ease-in-out;
+    animation: color-change 2s infinite ease-in-out;
     transition: 0.2s;
 }
 
-@keyframes colorChange {
+@keyframes color-change {
     0% {
         color: lightgray;
     }
@@ -78,4 +83,39 @@ button:hover {
     100% {
         color: lightgray;
     }
+}
+
+#jobs {
+    display: grid;
+    gap: 1.8rem;
+}
+
+.jobs-container {
+    display: grid;
+    gap: 1rem;
+}
+
+.job {
+    list-style: none;
+    border: 1px solid lightgray;
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: grid;
+    gap: 0.5rem;
+    transition: 0.2s ease-out;
+}
+
+.job:hover {
+    border-color: gray;
+}
+
+.job h3 {
+    font-size: 1.3em;
+    margin-bottom: 0.5%;
+}
+
+.job a {
+    text-decoration: none;
+    color: var(--button);
+    margin-top: 1%;
 }
