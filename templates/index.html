@@ -23,10 +23,10 @@
         />
     </head>
     <body>
-        <button id="menu-button">
+        <button id="menu-button" class="active">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <aside id="menu">
+        <aside id="menu" class="active">
             <form class="" method="post">
                 <div class="input-container">
                     <label>Palavras-chave:</label>
@@ -86,12 +86,15 @@
             </form>
         </aside>
 
-        <main id="main">
-            <h1>🔍 Buscador de Vagas</h1>
+        <main id="main" class="active">
+            <h1>
+                <i class="fa-solid fa-magnifying-glass"></i> Buscador de Vagas
+            </h1>
             <div id="loader">Carregando resultados...</div>
             <div id="jobs">
+                <p style="color: gray">Comece a buscar vagas!</p>
                 <!-- imagem + nome da empresa, titulo da vaga, empresa, localização, modalidade, salário, publicado em -->
-                <h2>Resultados da Busca:</h2>
+                <!-- <h2>Resultados da Busca:</h2>
                 <ul class="jobs-container">
                     <li class="job">
                         <h3 class="job-title">${job.job_title}</h3>
@@ -152,7 +155,7 @@
                             >Ver vaga no Linkedin</a
                         >
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </main>
     </body>
