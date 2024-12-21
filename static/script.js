@@ -3,21 +3,21 @@ const asideMenu = document.getElementById("menu");
 const mainContent = document.getElementById("main");
 
 const loader = document.getElementById("loader");
-const jobContainer = document.getElementById("jobs");
+const jobsContainer = document.getElementById("jobs");
 
 function isLoading(loading) {
     loader.style.display = loading ? "inline-block" : "none";
 }
 
 function displayMessage(message, isError = false) {
-    jobContainer.innerHTML = `<p style="color: ${
+    jobsContainer.innerHTML = `<p style="color: ${
         isError ? "red" : "black"
     };">${message}</p>`;
 }
 
 function displayJobs(jobs) {
     if (jobs.length > 0) {
-        jobContainer.innerHTML = `
+        jobsContainer.innerHTML = `
             <h2>Resultados da Busca:</h2>
             <ul class="jobs-container">
                 ${jobs
@@ -27,10 +27,18 @@ function displayJobs(jobs) {
                             <h3 class="job-title">${job.job_title}</h3>
                             <div>
                                 <p><strong>Empresa:</strong> ${job.company}</p>
-                                <p><strong>Localização:</strong> ${job.location}</p>
-                                <p><strong>Publicada em:</strong> ${job.posted_time}</p>
-                                <p><strong>Modalidade:</strong> ${job.remote}</p>
-                                <p><strong>Salário:</strong> ${job.salary || "Não especificado"}</p>
+                                <p><strong>Localização:</strong> ${
+                                    job.location
+                                }</p>
+                                <p><strong>Publicada em:</strong> ${
+                                    job.posted_time
+                                }</p>
+                                <p><strong>Modalidade:</strong> ${
+                                    job.remote
+                                }</p>
+                                <p><strong>Salário:</strong> ${
+                                    job.salary || "Não especificado"
+                                }</p>
                             </div>
                             <a href="${
                                 job.job_url
@@ -45,6 +53,7 @@ function displayJobs(jobs) {
 }
 
 async function fetchJobs(formData) {
+    jobsContainer.innerHTML = "";
     isLoading(true);
     const payload = new URLSearchParams();
     formData.forEach((value, key) => payload.append(key, value));
@@ -66,7 +75,6 @@ async function fetchJobs(formData) {
         if (data.error) {
             displayMessage(`Erro: ${data.error}`, true);
         } else if (data.jobs) {
-            console.log(data);
             console.log(data.jobs);
             displayJobs(data.jobs);
         }
@@ -86,14 +94,14 @@ document.querySelector("form").addEventListener("submit", (event) => {
 });
 
 menuButton.addEventListener("click", () => {
-    if (!asideMenu.classList.contains("active")) {
-        asideMenu.classList.add("active");
-        menuButton.classList.add("active");
-        mainContent.classList.add("active");
+    if (asideMenu.classList.contains("active")) {
+        asideMenu.classList.remove("active");
+        menuButton.classList.remove("active");
+        mainContent.classList.remove("active");
         return;
     }
 
-    asideMenu.classList.remove("active");
-    menuButton.classList.remove("active");
-    mainContent.classList.remove("active");
+    asideMenu.classList.add("active");
+    menuButton.classList.add("active");
+    mainContent.classList.add("active");
 });
