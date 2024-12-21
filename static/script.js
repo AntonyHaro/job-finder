@@ -1,3 +1,7 @@
+const menuButton = document.getElementById("menu-button");
+const asideMenu = document.getElementById("menu");
+const mainContent = document.getElementById("main");
+
 const loader = document.getElementById("loader");
 const jobContainer = document.getElementById("jobs");
 
@@ -23,18 +27,10 @@ function displayJobs(jobs) {
                             <h3 class="job-title">${job.job_title}</h3>
                             <div>
                                 <p><strong>Empresa:</strong> ${job.company}</p>
-                                <p><strong>Localização:</strong> ${
-                                    job.location
-                                }</p>
-                                <p><strong>Publicada em:</strong> ${
-                                    job.posted_time
-                                }</p>
-                                <p><strong>Modalidade:</strong> ${
-                                    job.remote
-                                }</p>
-                                <p><strong>Salário:</strong> ${
-                                    job.salary || "Não especificado"
-                                }</p>
+                                <p><strong>Localização:</strong> ${job.location}</p>
+                                <p><strong>Publicada em:</strong> ${job.posted_time}</p>
+                                <p><strong>Modalidade:</strong> ${job.remote}</p>
+                                <p><strong>Salário:</strong> ${job.salary || "Não especificado"}</p>
                             </div>
                             <a href="${
                                 job.job_url
@@ -87,4 +83,17 @@ document.querySelector("form").addEventListener("submit", (event) => {
     const formData = new FormData(event.target);
 
     fetchJobs(formData);
+});
+
+menuButton.addEventListener("click", () => {
+    if (!asideMenu.classList.contains("active")) {
+        asideMenu.classList.add("active");
+        menuButton.classList.add("active");
+        mainContent.classList.add("active");
+        return;
+    }
+
+    asideMenu.classList.remove("active");
+    menuButton.classList.remove("active");
+    mainContent.classList.remove("active");
 });

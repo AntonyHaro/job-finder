@@ -13,74 +13,81 @@
             src="{{ url_for('static', filename='script.js') }}"
             defer
         ></script>
+        <script src="../static/script.js" defer></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
     </head>
     <body>
-        <header>
+        <button id="menu-button">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <aside id="menu">
+            <form class="" method="post">
+                <div class="input-container">
+                    <label>Palavras-chave:</label>
+                    <input
+                        type="text"
+                        name="keywords"
+                        placeholder="palavras-chave:"
+                        required
+                    />
+                </div>
+                <!-- input conteria value="{{ filters.keywords if filters else '' }}" -->
+
+                <div class="input-container">
+                    <label>Nível de Experiência:</label>
+                    <select name="experience">
+                        <option value="">Selecione</option>
+                        <option value="Estágio">Estágio</option>
+                        <option value="Júnior">Júnior</option>
+                        <option value="Pleno">Pleno</option>
+                        <option value="Sênior">Sênior</option>
+                        <option value="Diretor">Diretor</option>
+                    </select>
+                </div>
+
+                <div class="input-container">
+                    <label>Tipo de Trabalho:</label>
+                    <select name="work_type">
+                        <option value="">Selecione</option>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Remoto">Remoto</option>
+                        <option value="Híbrido">Híbrido</option>
+                    </select>
+                </div>
+
+                <div class="input-container">
+                    <label>Data de Publicação:</label>
+                    <select name="date_posted">
+                        <option value="Qualquer período">
+                            Qualquer período
+                        </option>
+                        <option value="Última 24 horas">Última 24 horas</option>
+                        <option value="Última semana">Última semana</option>
+                        <option value="Último mês">Último mês</option>
+                    </select>
+                </div>
+
+                <div class="input-container">
+                    <label>Empresa (opcional):</label>
+                    <input
+                        type="text"
+                        name="company_filter"
+                        placeholder="empresas:"
+                    />
+                </div>
+
+                <button id="submit-button" type="submit">Buscar Vagas</button>
+            </form>
+        </aside>
+
+        <main id="main">
             <h1>🔍 Buscador de Vagas</h1>
-        </header>
-        <main>
-            <div>
-                <form method="post">
-                    <div class="input-container">
-                        <label>Palavras-chave:</label>
-                        <input
-                            type="text"
-                            name="keywords"
-                            placeholder="palavras-chave:"
-                            required
-                        />
-                    </div>
-                    <!-- input conteria value="{{ filters.keywords if filters else '' }}" -->
-
-                    <div class="input-container">
-                        <label>Nível de Experiência:</label>
-                        <select name="experience">
-                            <option value="">Selecione</option>
-                            <option value="Estágio">Estágio</option>
-                            <option value="Júnior">Júnior</option>
-                            <option value="Pleno">Pleno</option>
-                            <option value="Sênior">Sênior</option>
-                            <option value="Diretor">Diretor</option>
-                        </select>
-                    </div>
-
-                    <div class="input-container">
-                        <label>Tipo de Trabalho:</label>
-                        <select name="work_type">
-                            <option value="">Selecione</option>
-                            <option value="Presencial">Presencial</option>
-                            <option value="Remoto">Remoto</option>
-                            <option value="Híbrido">Híbrido</option>
-                        </select>
-                    </div>
-
-                    <div class="input-container">
-                        <label>Data de Publicação:</label>
-                        <select name="date_posted">
-                            <option value="Qualquer período">
-                                Qualquer período
-                            </option>
-                            <option value="Última 24 horas">
-                                Última 24 horas
-                            </option>
-                            <option value="Última semana">Última semana</option>
-                            <option value="Último mês">Último mês</option>
-                        </select>
-                    </div>
-
-                    <div class="input-container">
-                        <label>Empresa (opcional):</label>
-                        <input
-                            type="text"
-                            name="company_filter"
-                            placeholder="empresas:"
-                        />
-                    </div>
-
-                    <button type="submit">Buscar Vagas</button>
-                </form>
-            </div>
-
             <div id="loader">Carregando resultados...</div>
             <div id="jobs">
                 <!-- imagem + nome da empresa, titulo da vaga, empresa, localização, modalidade, salário, publicado em -->
