@@ -48,7 +48,7 @@ def search_jobs(
 
     try:
         response = requests.post(url, headers=headers, json=payload)
-        return response.json()
+        return response.json() or {}
     except Exception as e:
         return {"error": str(e)}
 
@@ -104,7 +104,7 @@ def api():
             vagas = results["data"]
             return jsonify({"jobs": vagas})
         else:
-            return jsonify({"error": results.get("error")})
+            return jsonify({"error": "Erro ao fazer a requisição"})
 
 
 if __name__ == "__main__":

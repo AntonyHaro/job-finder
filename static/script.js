@@ -3,6 +3,7 @@ const asideMenu = document.getElementById("menu");
 const mainContent = document.getElementById("main");
 
 const loader = document.getElementById("loader");
+const filtersContainer = document.getElementById("filters");
 const jobsContainer = document.getElementById("jobs");
 
 function isLoading(loading) {
@@ -52,11 +53,41 @@ function displayJobs(jobs) {
     }
 }
 
+function displayFilters(filters) {
+    const newKeys = {
+        keywords: "Palavras-chave",
+        work_type: "Tipo de trabalho",
+        company_filter: "Empresa (opcional)",
+        experience: "Experiência",
+        date_posted: "Data de Publicação",
+    };
+
+    filtersContainer.innerHTML = `
+            ${filters
+                .map(
+                    (filter) => `
+                    <div class="filter">
+                        <strong>${newKeys[filter.key]}:</strong>
+                        <p>${filter.value || "Não especificado"}</p>
+                    </div>
+                   `
+                )
+                .join("")}`;
+}
+
 async function fetchJobs(formData) {
     jobsContainer.innerHTML = "";
     isLoading(true);
+
     const payload = new URLSearchParams();
-    formData.forEach((value, key) => payload.append(key, value));
+    const filters = [];
+
+    formData.forEach((value, key) => {
+        payload.append(key, value);
+        filters.push({ key: key, value: value });
+    });
+
+    displayFilters(filters);
 
     try {
         const response = await fetch("/api", {
@@ -72,11 +103,14 @@ async function fetchJobs(formData) {
         }
 
         const data = await response.json();
-        if (data.error) {
-            displayMessage(`Erro: ${data.error}`, true);
-        } else if (data.jobs) {
-            console.log(data.jobs);
+
+        if (data.jobs) {
             displayJobs(data.jobs);
+        } else {
+            displayMessage(
+                `Erro: ${data.error || "Erro ao fazer a requisição"}`,
+                true
+            );
         }
     } catch (error) {
         displayMessage(`Erro ao buscar as vagas: ${error.message}`, true);

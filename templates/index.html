@@ -13,7 +13,7 @@
             src="{{ url_for('static', filename='script.js') }}"
             defer
         ></script>
-        <script src="../static/script.js" defer></script>
+        <!-- <script src="../static/script.js" defer></script> -->
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -90,6 +90,7 @@
             <h1>
                 <i class="fa-solid fa-magnifying-glass"></i> Buscador de Vagas
             </h1>
+            <div id="filters"></div>
             <div id="loader">Carregando resultados...</div>
             <div id="jobs">
                 <p style="color: gray">Comece a buscar vagas!</p>
